@@ -9,7 +9,7 @@ use Daemon;
 
 my ($url, $name)= @ARGV;
 
-my $daemon= new Daemon(save_to => '~/downloads');
+my $daemon= new Daemon;
 
 $daemon->download($url, $name);
 

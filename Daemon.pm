@@ -10,7 +10,7 @@ use LWP::Simple;
 sub new{
     my $this= shift;
 
-    bless {save_to => '~/downloads', @_}, $this;
+    bless {save_to => '.', @_}, $this;
 }
 
 sub download{
