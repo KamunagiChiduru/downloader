@@ -5,6 +5,8 @@ use utf8;
 use strict;
 use warnings;
 use Carp qw/croak cluck/;
+
+use lib qw/lib/;
 use Daemon;
 
 my ($url, $name)= @ARGV;
