@@ -16,14 +16,15 @@ sub new{
 sub download{
     my $this= shift;
     my ($url, $name)= @_;
+    my $filename= join '/', split(/\//, $this->{save_to}), $name;
 
     my $content= get $url;
-    croak "$!" unless defined $content;
+    croak "cant get '$url': $!" unless defined $content;
 
-    open my $f, '>', $this->{save_to} . $name or croak "$!";
+    open my $f, '>', $filename or croak "cant open '$filename': $!";
     binmode $f, ':utf8';
     print $f $content;
-    close $f or croak "$!";
+    close $f or croak "cant close '$filename': $!";
 }
 
 1;
