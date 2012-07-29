@@ -21,7 +21,7 @@ sub download{
     croak "$!" unless defined $content;
 
     open my $f, '>', $this->{save_to} . $name or croak "$!";
-    binmode $f;
+    binmode $f, ':utf8';
     print $f $content;
     close $f or croak "$!";
 }
