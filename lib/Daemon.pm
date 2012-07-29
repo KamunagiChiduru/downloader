@@ -5,18 +5,24 @@ use utf8;
 use strict;
 use warnings;
 use Carp qw/croak cluck/;
+use IO::File;
 use LWP::Simple;
 
 sub new{
     my $this= shift;
 
-    bless {save_to => '.', @_}, $this;
+    bless {
+        save_to       => '.',
+        show_progress => 1,
+        @_}, $this;
 }
 
 sub download{
     my $this= shift;
     my ($url, $name)= @_;
     my $filename= join '/', split(/\//, $this->{save_to}), $name;
+
+    $LWP::Simple::ua->show_progress($this->{show_progress});
 
     my $content= get $url;
     croak "cant get '$url': $!" unless defined $content;
