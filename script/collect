@@ -1,0 +1,72 @@
+#!/usr/bin/perl
+
+package App::Downloader::Options;
+
+use utf8;
+use Moose;
+use namespace::clean -except => [qw/meta/];
+
+with 'MooseX::Getopt';
+
+__PACKAGE__->meta->make_immutable;
+
+package main;
+
+use 5.010;
+use utf8;
+use strict;
+use warnings;
+use Encode::Locale;
+use Encode::Argv 'console_in';
+
+if(-t)
+{
+    binmode STDIN => ':encoding(console_in)';
+    binmode STDOUT => ':encoding(console_out)';
+}
+
+our $VERSION= 0.01;
+
+my $options= App::Downloader::Options->new_with_options;
+
+1;
+
+=pod
+
+=encoding utf8
+
+=head1 NAME
+
+    collect - download images from web site
+
+=head1 DESCRIPTION
+
+    this software is for to get any images from the web.
+
+=head1 SYNOPSIS
+
+    $ collect {options}
+
+=over
+
+=item --help
+
+    このメッセージを表示する。
+
+=item --version
+
+    バージョン情報を表示する。
+
+=back
+
+=head1 AUTHOR
+
+    kamichidu <c.kamunagi@gmail.com>
+
+=head1 COPYRIGHT AND LICENCE
+
+    This software is copyright (c) 2013 by kamichidu.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
